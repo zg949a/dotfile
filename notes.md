@@ -70,7 +70,7 @@
 11. apt-cache search //查找文件
 12. sudo alsactl init  //声卡初始化
 13. tar zcf F.tgz F/    //把F打包成tgz压缩包
-14. tar xf F.tga        //解压文件
+14. tar xf F.tgz        //解压文件
 15. C+Win+P          //快速截屏 
 16. C+M+P            //打印网页为pdf
 17. 录屏
