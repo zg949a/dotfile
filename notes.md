@@ -2,7 +2,7 @@
 
 ## vim个人配置
 1. sudo apt install neovim
-2. git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+2. git clone <https://github.com/VundleVim/Vundle.vim.git> ~/.vim/bundle/Vundle.vim
 
 ### pyright的配置:
 - sudo apt install nodejs
@@ -110,11 +110,11 @@
 - bypy compare  //比较本地当前目录和云盘根目录，看是否一致，来判断是否同步成功
 
 # OTHER
-电量存储位置 (cat /sys/class/power_supply/BAT0/capacity)
-python包安装pip: https://www.lfd.uci.edu/~gohlke/pythonlibs/
-sudo fdisk -l  //查看磁盘分区
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim  //下载vim-plug
-##U盘挂载
+- 电量存储位置 cat /sys/class/power_supply/BAT0/capacity
+- python包安装pip: <https://www.lfd.uci.edu/~gohlke/pythonlibs/>
+- sudo fdisk -l  //查看磁盘分区
+- curl -fLo ~/.vim/autoload/plug.vim --create-dirs <https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim>  //下载vim-plug
+### U盘挂载
 - sudo fdisk -l  //查看u盘位置
 - sudo mount u盘位置 目标位置
 
