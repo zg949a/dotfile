@@ -9,17 +9,28 @@
 >3. sudo reboot
 - pass
 >> 查看硬件：
+
 > lspci  
-> lspci -vvv //想看更详细的信息
+lspci -vvv //想看更详细的信息
+
 >> 如果是Realtek网卡
+
 > sudo apt install firmware-realtek
+
 >> 如果是Atheros网卡
+
 > sudo apt install firmware-atheros
+
 >> 如果是Intel网卡
+
 > sudo apt install firmware-iwlwifi
+
 >> 列出库里所有的固件包
+
 > aptitude search ^firmware
+
 >> 看固件包的详细信息，比如：
+
 > apt show firmware-atheros
 
 ## vim个人配置
