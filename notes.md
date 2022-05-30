@@ -1,26 +1,26 @@
 # config
 ## 装机必备
-1. 换源  ***替换apt的sources.list***
+1. 换源 //替换apt的sources.list
 2. 更新apt
 > sudo apt update && upgrade
 3. 安装网卡驱动以及软件
 >1. sudo apt install firmware-iwlwifi
 >2. sudo apt install network-manger
 >3. sudo reboot
-### pass
-查看硬件：
+- pass
+>> 查看硬件：
 > lspci  
 > lspci -vvv //想看更详细的信息
-如果是Realtek网卡
-- sudo apt install firmware-realtek
-如果是Atheros网卡
-- sudo apt install firmware-atheros
-如果是Intel网卡
-- sudo apt install firmware-iwlwifi
-列出库里所有的固件包
-- aptitude search ^firmware
-看固件包的详细信息呗，比如：
-- apt show firmware-atheros
+>> 如果是Realtek网卡
+> sudo apt install firmware-realtek
+>> 如果是Atheros网卡
+> sudo apt install firmware-atheros
+>> 如果是Intel网卡
+> sudo apt install firmware-iwlwifi
+>> 列出库里所有的固件包
+> aptitude search ^firmware
+>> 看固件包的详细信息，比如：
+> apt show firmware-atheros
 
 ## vim个人配置
 1. sudo apt install neovim
