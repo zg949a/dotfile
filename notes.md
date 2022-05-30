@@ -1,12 +1,12 @@
 # config
 ## 装机必备
-1. 换源  //替换apt的sources.list
+1. 换源  ***替换apt的sources.list***
 2. 更新apt
 > sudo apt update && upgrade
 3. 安装网卡驱动以及软件
-> sudo apt install firmware-iwlwifi***#intel网卡***
-sudo apt install network-manger
-sudo reboot
+>1. sudo apt install firmware-iwlwifi
+>2. sudo apt install network-manger
+>3. sudo reboot
 ### pass
 查看硬件：
 > lspci  
