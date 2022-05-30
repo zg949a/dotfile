@@ -99,7 +99,8 @@ lspci -vvv //想看更详细的信息
 - sudo update-desktop-database
 
 ## 输入法
-- sudo dpkg-reconfigure locales
+      sudo dpkg-reconfigure locales
+
 ''
 [X] en_US.UTF-8 UTF-8
 [X] zh_CN.GB18030 GB18030
