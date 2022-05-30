@@ -4,13 +4,13 @@
 2. 更新apt
 > sudo apt update && upgrade
 3. 安装网卡驱动以及软件
-> 1. sudo apt install firmware-iwlwifi***#intel网卡***
-2. sudo apt install network-manger
-3. sudo reboot
+> sudo apt install firmware-iwlwifi***#intel网卡***
+sudo apt install network-manger
+sudo reboot
 ### pass
 查看硬件：
-- lspci  
-- lspci -vvv //想看更详细的信息
+> lspci  
+> lspci -vvv //想看更详细的信息
 如果是Realtek网卡
 - sudo apt install firmware-realtek
 如果是Atheros网卡
