@@ -7,6 +7,7 @@
 		sudo apt install firmware-iwlwifi
 		sudo apt install network-manger
 		sudo reboot
+		
 - pass
 查看硬件：
 		lspci
