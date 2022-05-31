@@ -88,31 +88,15 @@
 - :Tlist 可打开/关闭列list
 
 ## Alacritty install
-1. 首先确保你的系统中有 git 、 curl 、 cargo ：
-- sudo apt install git curl cargo
-2. 接下来将仓库中的文件 clone 下来：
-- git clone <https://github.com/alacritty/alacritty.git>
-- cd alacritty
-3. 之后安装 rust 编译工具：
-- curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-4. 安装几个待会儿安装所依赖的包：
-- sudo apt install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev python3
-5. 使用 cargo 来编译安装：
-- cargo build --release
-6. 若没有报错，也就是完成了编译安装，那么你将可以在 ./target/release/ 下找到一个可执行的二进制文件 alacritty ，这时候已经离完成安装不远了。接下来回到 target 的父目录，通过以下指令使你能在 GUI 中打开 alacritty ：
-- sudo cp target/release/alacritty /usr/local/bin # or anywhere else in $PATH
-- sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
-- sudo desktop-file-install extra/linux/Alacritty.desktop
-- sudo update-desktop-database
+1. <https://github.com/alacritty/alacritty.git>
+2. see INSTALL.md
 
 ## 输入法
 		sudo dpkg-reconfigure locales
 
-'''
-[X] en_US.UTF-8 UTF-8
-[X] zh_CN.GB18030 GB18030
-[X] zh_CN.UTF-8 UTF-8
-'''
+* [X] en_US.UTF-8 UTF-8
+* [X] zh_CN.GB18030 GB18030
+* [X] zh_CN.UTF-8 UTF-8
 
 		sudo apt install fcitx5 fcitx5-pinyin
 		fcitx5-configtool
