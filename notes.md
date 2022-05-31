@@ -33,14 +33,15 @@
 - git clone <https://github.com/VundleVim/Vundle.vim.git> ~/.vim/bundle/Vundle.vim
 
 ### pyright的配置:
-- sudo apt install nodejs
-- sudo apt install npm
-- sudo npm install -g yarn
-- cd coc.nvim/
-- yarn install
-- yarn build
+		sudo apt install nodejs
+		sudo apt install npm
+		sudo npm install -g yarn
+		cd coc.nvim/
+		yarn install
+		yarn build
+
 - 打开vim 
-- :CocInstall coc-pyright
+		:CocInstall coc-pyright
 
 ### ctags+taglist配置:
 1. 安装ctags
