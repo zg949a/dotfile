@@ -18,14 +18,23 @@
 		lspci -vvv //想看更详细的信息
 
 > 如果是Realtek网卡
+
 		sudo apt install firmware-realtek
+
 > 如果是Atheros网卡
+
 		sudo apt install firmware-atheros
+
 > 如果是Intel网卡
+
 		sudo apt install firmware-iwlwifi
+
 > 列出库里所有的固件包
+
 		aptitude search ^firmware
+
 > 看固件包的详细信息，比如：
+
 		apt show firmware-atheros
 
 ## vim个人配置
@@ -40,23 +49,24 @@
 		yarn install
 		yarn build
 
-- 打开vim 
-		:CocInstall coc-pyright
+- 打开vim :CocInstall coc-pyright
 
 ### ctags+taglist配置:
 1. 安装ctags
-- sudo apt-get install exuberant-ctags
-//OR 手动下载压缩包
+- 下载压缩包
 - <http://ctags.sourceforge.net/>
-- tar xzvf ctags-5.8.tag.gz
-- cd ctags-5.8
-- ./configure
-- sudo make
-- sudo make install
+		tar xzvf ctags-5.8.tag.gz
+		cd ctags-5.8
+		./configure
+		sudo make
+		sudo make install
+
 2. 安装taglist 
 - 下载压缩包
 - <https://www.vim.org/scripts/script.php?script_id=273>
-- unzip taglist_45.zip -d ~/.vim/
+
+		unzip taglist_45.zip -d ~/.vim/
+
 - 启动vim :helptags .
 - 重启vim :TlistToggle来打开和关闭taglist窗口
 - 修改~/.vim/plugin/taglist.vim文件，找到if !exitsts(loaded_taglist)这一行，并在其前面添加let Tlist_Ctags_Cmd="/home/zgz/ctags-5.8/ctags"
@@ -95,15 +105,17 @@
 - sudo update-desktop-database
 
 ## 输入法
-- sudo dpkg-reconfigure locales
-''
+		sudo dpkg-reconfigure locales
+
+'''
 [X] en_US.UTF-8 UTF-8
 [X] zh_CN.GB18030 GB18030
 [X] zh_CN.UTF-8 UTF-8
-''
-- sudo apt install fcitx fcitx-pinyin
-- fcitx-configtool
-- sudo reboot
+'''
+
+		sudo apt install fcitx5 fcitx5-pinyin
+		fcitx5-configtool
+		sudo reboot
 
 ## GNOME install
 1. 准备
