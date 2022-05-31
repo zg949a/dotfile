@@ -97,7 +97,7 @@ vim输入 ```:TlistToggle```来打开侧面窗口 (或者直接:```Tlist```、``
 
 ## 输入法
 ```sh
-sudo dpkg-reconfigure locales
+sudo dpkg-reconfigure locales```
 
 * [X] en_US.UTF-8 UTF-8
 * [X] zh_CN.GB18030 GB18030
@@ -112,23 +112,27 @@ sudo reboot
 ```
 sudo apt update && upgrade
 sudo apt install tasksel
-sudo tasksel install desktop gnome-desktop```
+sudo tasksel install desktop gnome-desktop
+```
 2. 设置开机默认启动
 ```sh
 sudo systemctl set-default graphical.target
-sudo reboot```
+sudo reboot
+```
 3. config
 - gnome 插件 <https://extensions.gnome.org/>
 - gnome theme <https://www.gnome-look.org>
 4. Dingtalk install
 - <https://dtapp-pub.dingtalk.com/dingtalk-desktop/xc_dingtalk_update/linux_deb/Release/com.alibabainc.dingtalk_1.4.0.20425_amd64.deb>
 ```sh
-sudo dpkg -i com.alibabainc.dingtalk_1.4.0.20425_amd64.deb```
+sudo dpkg -i com.alibabainc.dingtalk_1.4.0.20425_amd64.deb
+```
 5. WeiChat install
 ```sh
 wget -O- https://deepin-wine.i-m.dev/setup.sh | sh
 sudo apt-get install com.qq.weixin.deepin
-sudo reboot```
+sudo reboot
+```
 
 ## 格式转换
 1. pdf F.docx       //docx -> pdf
