@@ -2,40 +2,29 @@
 ## 装机必备
 1. 换源 //替换apt的sources.list
 2. 更新apt
-> sudo apt update && upgrade
+		sudo apt update && upgrade
 3. 安装网卡驱动以及软件
->1. sudo apt install firmware-iwlwifi
->2. sudo apt install network-manger
->3. sudo reboot
+		sudo apt install firmware-iwlwifi
+		sudo apt install network-manger
+		sudo reboot
 - pass
->> 查看硬件：
-
-> lspci  
-lspci -vvv //想看更详细的信息
-
->> 如果是Realtek网卡
-
-> sudo apt install firmware-realtek
-
->> 如果是Atheros网卡
-
-> sudo apt install firmware-atheros
-
->> 如果是Intel网卡
-
-> sudo apt install firmware-iwlwifi
-
->> 列出库里所有的固件包
-
-> aptitude search ^firmware
-
->> 看固件包的详细信息，比如：
-
-> apt show firmware-atheros
+> 查看硬件：
+		lspci
+		lspci -vvv //想看更详细的信息
+> 如果是Realtek网卡
+		sudo apt install firmware-realtek
+> 如果是Atheros网卡
+		sudo apt install firmware-atheros
+> 如果是Intel网卡
+		sudo apt install firmware-iwlwifi
+> 列出库里所有的固件包
+		aptitude search ^firmware
+> 看固件包的详细信息，比如：
+		apt show firmware-atheros
 
 ## vim个人配置
-1. sudo apt install neovim
-2. git clone <https://github.com/VundleVim/Vundle.vim.git> ~/.vim/bundle/Vundle.vim
+		sudo apt install neovim
+		git clone <https://github.com/VundleVim/Vundle.vim.git> ~/.vim/bundle/Vundle.vim
 
 ### pyright的配置:
 - sudo apt install nodejs
@@ -99,8 +88,7 @@ lspci -vvv //想看更详细的信息
 - sudo update-desktop-database
 
 ## 输入法
-      sudo dpkg-reconfigure locales
-
+- sudo dpkg-reconfigure locales
 ''
 [X] en_US.UTF-8 UTF-8
 [X] zh_CN.GB18030 GB18030
@@ -109,6 +97,25 @@ lspci -vvv //想看更详细的信息
 - sudo apt install fcitx fcitx-pinyin
 - fcitx-configtool
 - sudo reboot
+
+## GNOME install
+1. 准备
+		sudo apt update && upgrade
+		sudo apt install tasksel
+		sudo tasksel install desktop gnome-desktop
+2. When star with it 
+		sudo systemctl set-default graphical.target
+		sudo reboot
+3. config
+- gnome 插件 <https://extensions.gnome.org/>
+- gnome theme <https://www.gnome-look.org>
+4. Dingtalk install
+- <https://dtapp-pub.dingtalk.com/dingtalk-desktop/xc_dingtalk_update/linux_deb/Release/com.alibabainc.dingtalk_1.4.0.20425_amd64.deb>
+		sudo dpkg -i com.alibabainc.dingtalk_1.4.0.20425_amd64.deb
+5. WeiChat install
+		wget -O- https://deepin-wine.i-m.dev/setup.sh | sh
+		sudo apt-get install com.qq.weixin.deepin
+		sudo reboot
 
 ## 格式转换
 1. pdf F.docx       //docx -> pdf
@@ -174,8 +181,6 @@ lspci -vvv //想看更详细的信息
 
 # OTHER
 - 电量存储位置 cat /sys/class/power_supply/BAT0/capacity
-- gnome 插件 <https://extensions.gnome.org/>  
-- gnome theme <https://www.gnome-look.org>
 - python包安装pip: <https://www.lfd.uci.edu/~gohlke/pythonlibs/>
 - sudo fdisk -l  //查看磁盘分区
 - curl -fLo ~/.vim/autoload/plug.vim --create-dirs <https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim>  //下载vim-plug
