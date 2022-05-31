@@ -4,9 +4,9 @@ window:
     columns: 150
     lines: 50
 
-  class:
-    instand: Alacritty
-    general: Xterm
+#  class:
+#    instand: Alacritty
+#    general: Xterm
 
 background_opacity: 0.8
   #window_opacity: 0.8
