@@ -98,6 +98,7 @@ vim输入 ```:TlistToggle```来打开侧面窗口 (或者直接:```Tlist```、``
 ## 输入法
 ```sh
 sudo dpkg-reconfigure locales```
+
 * [X] en_US.UTF-8 UTF-8
 * [X] zh_CN.GB18030 GB18030
 * [X] zh_CN.UTF-8 UTF-8
