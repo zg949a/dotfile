@@ -55,6 +55,7 @@
 1. 安装ctags
 - 下载压缩包
 - <http://ctags.sourceforge.net/>
+
 		tar xzvf ctags-5.8.tag.gz
 		cd ctags-5.8
 		./configure
