@@ -97,12 +97,12 @@ vim输入 ```:TlistToggle```来打开侧面窗口 (或者直接:```Tlist```、``
 
 ## 输入法
 ```sh
-sudo dpkg-reconfigure locales```
+sudo dpkg-reconfigure locales
 
 * [X] en_US.UTF-8 UTF-8
 * [X] zh_CN.GB18030 GB18030
 * [X] zh_CN.UTF-8 UTF-8
-```sh
+
 sudo apt install fcitx5 fcitx5-pinyin
 fcitx5-configtool
 sudo reboot
