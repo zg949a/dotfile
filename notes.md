@@ -6,75 +6,79 @@
 sudo apt update && upgrade
 ```
 3. 安装网卡驱动以及软件
-
-		sudo apt install firmware-iwlwifi
-		sudo apt install network-manger
-		sudo reboot
-
+```sh
+sudo apt install firmware-iwlwifi
+sudo apt install network-manger
+sudo reboot
+```
 - pass
 > 查看硬件：
-
-		lspci
-		lspci -vvv //想看更详细的信息
-
+```sh
+lspci
+lspci -vvv //想看更详细的信息
+```
 > 如果是Realtek网卡
-
-		sudo apt install firmware-realtek
-
+```sh
+sudo apt install firmware-realtek
+```
 > 如果是Atheros网卡
-
-		sudo apt install firmware-atheros
-
+```sh
+sudo apt install firmware-atheros
+```
 > 如果是Intel网卡
-
-		sudo apt install firmware-iwlwifi
-
+```sh
+sudo apt install firmware-iwlwifi
+```
 > 列出库里所有的固件包
-
-		aptitude search ^firmware
-
+```sh
+aptitude search ^firmware
+```
 > 看固件包的详细信息，比如：
-
-		apt show firmware-atheros
-
+```sh
+apt show firmware-atheros
+```
 ## vim个人配置
-- sudo apt install neovim
-- git clone <https://github.com/VundleVim/Vundle.vim.git> ~/.vim/bundle/Vundle.vim
-
+```
+sudo apt install neovim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+```
 ### pyright的配置:
-		sudo apt install nodejs
-		sudo apt install npm
-		sudo npm install -g yarn
-		cd coc.nvim/
-		yarn install
-		yarn build
-
-- 打开vim :CocInstall coc-pyright
+```sh
+sudo apt install nodejs
+sudo apt install npm
+sudo npm install -g yarn
+cd coc.nvim/
+yarn install
+yarn build
+```
+- 打开vim: ```CocInstall coc-pyright```
 
 ### ctags+taglist配置:
-1. 安装ctags
+1. 安装```ctags```
 - 下载压缩包
 - <http://ctags.sourceforge.net/>
-
-		tar xzvf ctags-5.8.tag.gz
-		cd ctags-5.8
-		./configure
-		sudo make
-		sudo make install
-
+```sh
+tar xzvf ctags-5.8.tag.gz
+cd ctags-5.8
+./configure
+sudo make
+sudo make install
+```
 2. 安装taglist 
 - 下载压缩包
 - <https://www.vim.org/scripts/script.php?script_id=273>
-
-		unzip taglist_45.zip -d ~/.vim/
-
-- 启动vim :helptags .
-- 重启vim :TlistToggle来打开和关闭taglist窗口
-- 修改~/.vim/plugin/taglist.vim文件，找到if !exitsts(loaded_taglist)这一行，并在其前面添加let Tlist_Ctags_Cmd="/home/zgz/ctags-5.8/ctags"
-- cd ctags-5.8/
-- ./ctags -R *
-- ls -l tags  //查看是否有
-- vim输入:TlistToggle来打开侧面窗口 (或者直接:Tlist、TlistOpen也可以)
+```
+unzip taglist_45.zip -d ~/.vim/
+```
+- 启动vim ```:helptags .```
+- 重启vim ```TlistToggle``` 来打开和关闭taglist窗口
+- 修改```~/.vim/plugin/taglist.vim```文件，找到```if !exitsts(loaded_taglist)```这一行，并在其前面添加```let Tlist_Ctags_Cmd="/home/zgz/ctags-5.8/ctags"```
+```
+cd ctags-5.8/
+./ctags -R *
+ls -l tags  //查看是否有
+```
+vim输入 ```:TlistToggle```来打开侧面窗口 (或者直接:```Tlist```、```TlistOpen```也可以)
 
 ## vim 使用技巧
 1. 基础（vim自带）
@@ -92,34 +96,38 @@ sudo apt update && upgrade
 2. see INSTALL.md
 
 ## 输入法
-		sudo dpkg-reconfigure locales
-
+```sh
+sudo dpkg-reconfigure locales```
 * [X] en_US.UTF-8 UTF-8
 * [X] zh_CN.GB18030 GB18030
 * [X] zh_CN.UTF-8 UTF-8
-
-		sudo apt install fcitx5 fcitx5-pinyin
-		fcitx5-configtool
-		sudo reboot
-
+```sh
+sudo apt install fcitx5 fcitx5-pinyin
+fcitx5-configtool
+sudo reboot
+```
 ## GNOME install
 1. 准备
-		sudo apt update && upgrade
-		sudo apt install tasksel
-		sudo tasksel install desktop gnome-desktop
-2. When star with it 
-		sudo systemctl set-default graphical.target
-		sudo reboot
+```
+sudo apt update && upgrade
+sudo apt install tasksel
+sudo tasksel install desktop gnome-desktop```
+2. 设置开机默认启动
+```sh
+sudo systemctl set-default graphical.target
+sudo reboot```
 3. config
 - gnome 插件 <https://extensions.gnome.org/>
 - gnome theme <https://www.gnome-look.org>
 4. Dingtalk install
 - <https://dtapp-pub.dingtalk.com/dingtalk-desktop/xc_dingtalk_update/linux_deb/Release/com.alibabainc.dingtalk_1.4.0.20425_amd64.deb>
-		sudo dpkg -i com.alibabainc.dingtalk_1.4.0.20425_amd64.deb
+```sh
+sudo dpkg -i com.alibabainc.dingtalk_1.4.0.20425_amd64.deb```
 5. WeiChat install
-		wget -O- https://deepin-wine.i-m.dev/setup.sh | sh
-		sudo apt-get install com.qq.weixin.deepin
-		sudo reboot
+```sh
+wget -O- https://deepin-wine.i-m.dev/setup.sh | sh
+sudo apt-get install com.qq.weixin.deepin
+sudo reboot```
 
 ## 格式转换
 1. pdf F.docx       //docx -> pdf
