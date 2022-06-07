@@ -10,16 +10,8 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set smarttab
-
-" Search down into subfolders
-" Provides tab-completion for all file-related tasks
 set path+=**
-" Display all matching files when we tab complete
 set wildmenu
-
-" - :edit a folder to open a file browser
-" - <CR>/v/t to open in an h-split/v-split/tab
-" - check |netrw-browse-maps| for more mappings
 let g:netrw_banner=0
 let g:netrw_browse_split=4
 let g:netrw_altv=1
@@ -84,8 +76,17 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" settings for SirVer/ultisnips
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let This_Show_One_File=1
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" settings for vimtex
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:livepreview_previewer = 'evince'
 let g:tex_flavor='latex'
 autocmd Filetype tex setl updatetime=3
@@ -113,4 +114,5 @@ endif
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
 inoremap { {}<LEFT>
-
+inoremap ' ''<LEFT>
+inoremap " ""<LEFT>
