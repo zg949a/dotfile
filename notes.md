@@ -3,7 +3,8 @@
 1. 换源 //替换apt的sources.list
 2. 更新apt
 ```sh
-sudo apt update && upgrade
+sudo apt update 
+sudo apt upgrade
 ```
 3. 安装网卡驱动以及软件
 ```sh
@@ -37,6 +38,13 @@ aptitude search ^firmware
 ```sh
 apt show firmware-atheros
 ```
+4. config
+```
+sudo apt install rename
+cd
+ln 
+```
+
 ## vim个人配置
 ```
 sudo apt install neovim
