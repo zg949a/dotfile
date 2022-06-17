@@ -42,7 +42,8 @@ apt show firmware-atheros
 ```
 sudo apt install rename
 cd
-ln 
+ln -sf dotfile/dot.* .
+rename 's/dot//' dot.*
 ```
 
 ## vim个人配置
@@ -119,6 +120,7 @@ sudo reboot
 3. config
 - gnome 插件 <https://extensions.gnome.org/>
 - gnome theme <https://www.gnome-look.org>
+- wallpaper <https://wallpaperswide.com>
 4. Dingtalk install
 - <https://dtapp-pub.dingtalk.com/dingtalk-desktop/xc_dingtalk_update/linux_deb/Release/com.alibabainc.dingtalk_1.4.0.20425_amd64.deb>
 ```sh
