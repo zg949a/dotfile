@@ -104,6 +104,16 @@ let g:vimtex_compiler_latexmk = {
 \ ],
 \}
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" settings  taglist
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let Tlist_Show_One_File=1
+let Tlist_Auto_Open=1
+let Tlist_Use_Right_Window=0
+let Tlist_WinWidth=50
+let Tlist_Exit_OnlyWindow=1
+noremap <F4> :TlistToggle<CR>
+
 if &term =~ '256color'
     " disable Background Color Erase (BCE) so that color schemes
     " render properly when inside 256-color tmux and GNU screen.
