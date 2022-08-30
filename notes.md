@@ -173,6 +173,7 @@ sudo reboot
 - xrandr --output ... --same-as ... --auto
 
 19. type clash.sh      //查看clash.sh文件的位置
+20. unrar x file.rar    //解压rar文件
 
 ## FTP
 1. nmap //扫描端口
