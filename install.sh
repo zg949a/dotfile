@@ -8,7 +8,7 @@ DOTFILE="$HOME/.dotfile"
 ERR_USAGE=1
 ERR_INT=2
 
-####################### color code ##########
+################# color output ##############
 ERR=$(tput setaf 1)     # red
 WARN=$(tput setaf 3)    # yellow
 INFO=$(tput setaf 6)    # cyan
@@ -120,17 +120,15 @@ EOF
 		colorEcho $ERR "***************************************************"
 		pause_err
 	done
-	echo -e "$USER\tALL = NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER
+	sudo tee /etc/sudoers.d/$USER <<<"$USER    ALL = NOPASSWD: ALL"
 	sudo chmod 440 /etc/sudoers.d/$USER
 }
-
 
 dist_upgrade(){
     # setup sources.list
 	colorEcho $INFO "Modifying /etc/apt/sources.list ..."
     
     cat <<EOF | sudo tee /etc/apt/sources.list
-deb http://mirrors.163.com/debian sid main contrib non-free
 deb http://ftp2.cn.debian.org/debian sid main contrib non-free
 deb http://mirrors.ustc.edu.cn/debian sid main contrib non-free
 EOF
@@ -153,12 +151,13 @@ EOF
 
     sudo apt-get -y install wget aria2
 
-    $WGET $BASEURL/debian-install/apt-fast.deb && \
-	    sudo dpkg -i apt-fast.deb
+    $WGET $BASEURL/debian-install/apt-fast.deb && {
+	    sudo dpkg -i apt-fast.deb || colorEcho $ERR "Failed installing apt-fast!";
+	}
 }
 
 more_pkgs(){
-	echo "Downloading package lists from $BASEURL ..."
+	colorEcho $INFO "Downloading package lists from $BASEURL ..."
     
 	cd	
 
@@ -189,7 +188,7 @@ EOF
     sudo debconf-set-selections debconf.txt
     
     if APT=$(type -p apt-fast) && type -p aria2c; then
-        colorEcho $INFO "Great, apt-fast is available."
+        colorEcho $INFO "Great! Both apt-fast and aria2c are available."
     else
         APT="apt-get"
     fi
@@ -219,11 +218,11 @@ EOF
 misc_files(){
 	cd
     
-	cat /dev/null > .xsession-errors && sudo chattr +i .xsession-errors
+	> .xsession-errors && sudo chattr +i .xsession-errors
 
 	colorEcho $INFO "Downloading misc files..."
     
-	while ! $WGET $BASEURL/debian-install/{elpa.tgz,tmux-plugins.tgz,FiraCodeNerdFont.tgz,cn/dict-cn.tgz,cargo.bin.tgz}; do
+	while ! $WGET $BASEURL/debian-install/{stterm.deb,dwm.deb,elpa.tgz,tmux-plugins.tgz,FiraCodeNerdFont.tgz,cn/dict-cn.tgz,cargo.bin.tgz}; do
 		colorEcho $ERR "********** Oops! Failed downloading misc files! **********"
 		cat<<EOF
 It could be:
@@ -233,6 +232,9 @@ EOF
 		colorEcho $ERR "**********************************************************"
 		pause_err
 	done
+	
+	sudo dpkg -i dwm.deb
+	sudo dpkg -i stterm.deb
 	
 	tar zxf elpa.tgz -C ~/.emacs.d/
 
@@ -298,7 +300,7 @@ dotfile(){
 	cd
 	rm -rf $DOTFILE .bash*
 
-	cat<<EOF > .gitconfig
+	cat<<EOF > .gitconfig #this file will be replaced later by ~/.config/git/config
 [https]
     sslVerify = false
 [http]
@@ -324,15 +326,14 @@ EOF
 	ln -sf $DOTFILE/help/dot.* .
 	rename 's/dot//' dot.*
     ln -sf $DOTFILE/dot.config/stumpwm/init.lisp .stumpwmrc
-
-	for f in lf st st-copyout st-urlhandler stud uni; do
-		sudo ln -sf $DOTFILE/usr/local/bin/"$f" /usr/local/bin/"$f"
-	done
+	
+	sudo cp "$DOTFILE"/usr/local/bin/* /usr/local/bin/
 
 	sudo ln -f /usr/local/bin/st /usr/local/bin/xterm
     sudo ln -sf /usr/bin/batcat /usr/local/bin/bat
     sudo ln -sf /usr/bin/batcat /usr/local/bin/cat
     sudo ln -sf /usr/bin/fdfind /usr/local/bin/fd
+    sudo ln -sf /usr/bin/nsxiv /usr/local/bin/sxiv
 
 	sudo cp $DOTFILE/etc/X11/xorg.conf.d/30-touchpad.conf /etc/X11/xorg.conf.d/
 
@@ -342,7 +343,7 @@ EOF
 	xkey
 
     # config timezone
-    echo 'Asia/Shanghai' | sudo tee /etc/timezone
+    sudo tee /etc/timezone <<<'Asia/Shanghai'
     sudo dpkg-reconfigure -fnoninteractive tzdata
 
     # use large font in console
@@ -356,47 +357,40 @@ VIDEOMODE=
 EOF
     sudo dpkg-reconfigure -fnoninteractive console-setup
 
+	WM="$(command -v dwm)"
+	[ "$WM" ] && sudo update-alternatives --set x-window-manager "$WM"
+
 	[ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:${PATH}"
+	
 	ALACRITTY="$(command -v alacritty)"
 	if [ -n "$ALACRITTY" ]; then
         sudo update-alternatives --install /usr/bin/x-terminal-emulator \
 			 x-terminal-emulator "$ALACRITTY" 90 
         sudo update-alternatives --set x-terminal-emulator "$ALACRITTY"
 	fi
+}
 
-    type -p stumpwm && \
-        sudo update-alternatives --set x-window-manager $(type -p stumpwm)
+# sawfish_ugliness(){
+# 	cd
+# 	UGLINESS="sawfish-merlin-ugliness_1.3.1-1_all.deb"
+# 	if $WGET $BASEURL/debian-install/sawfish/$UGLINESS; then
+# 		sudo dpkg -i $UGLINESS
+# 		sudo sed -i '/expert/s/^/;/' /usr/share/sawfish/site-lisp/merlin/uglicon.jl
+# 		sudo sed -i '/gnome/s/^/;/' /etc/X11/sawfish/site-init.d/00debian.jl
+# 		sudo sed -i '/debian/s/^/;/' /etc/X11/sawfish/site-init.d/00menu.jl
+# 	else
+# 		colorEcho $ERR "********** Failed downloading sawfish-merlin-ugliness package! **********"
+# 		cat<<EOF
+# It could be:
+# 1. A network failure.
+# 2. A server side error (server down? file missing?).
 
-### The ubuntu deb package is no longer valid for Debian.	
-#     cat <<EOF | sudo tee /etc/apt/sources.list.d/apt-fast.list 
-# deb http://ppa.launchpad.net/apt-fast/stable/ubuntu bionic main
+# In any case, this is an optional package. That means you can live without it. So, now you can just ignore this error message, and press any key to continue. But don't forget to send me a bug report ($EMAIL).
 # EOF
-#     sudo apt-key adv --keyserver keyserver.ubuntu.com \
-#          --recv-keys A2166B8DE8BDC3367D1901C11EE2FF37CA8DA16B
-}
-
-sawfish_ugliness(){
-	cd
-	UGLINESS="sawfish-merlin-ugliness_1.3.1-1_all.deb"
-	if $WGET $BASEURL/debian-install/sawfish/$UGLINESS
-	then
-		sudo dpkg -i $UGLINESS
-		sudo sed -i '/expert/s/^/;/' /usr/share/sawfish/site-lisp/merlin/uglicon.jl
-		sudo sed -i '/gnome/s/^/;/' /etc/X11/sawfish/site-init.d/00debian.jl
-		sudo sed -i '/debian/s/^/;/' /etc/X11/sawfish/site-init.d/00menu.jl
-	else
-		colorEcho $ERR "********** Failed downloading sawfish-merlin-ugliness package! **********"
-		cat<<EOF
-It could be:
-1. A network failure.
-2. A server side error (server down? file missing?).
-
-In any case, this is an optional package. That means you can live without it. So, now you can just ignore this error message, and press any key to continue. But don't forget to send me a bug report ($EMAIL).
-EOF
-		colorEcho $ERR "*************************************************************************"
-		pause
-	fi
-}
+# 		colorEcho $ERR "*************************************************************************"
+# 		pause
+# 	fi
+# }
 
 congrats(){
 	dialog --title "Installation completed successfully!" \
@@ -411,15 +405,7 @@ Upon finishing boot up, if you are lucky to see the mouse cursor showing on the 
 If the mouse cursor isn't there at all, that probably means the Xorg doesn't work well. This usually has something to do with the graphic card driver. In this unlucky case, you have to ask google for more info.
 
 Have fun!" 20 80
-# 	colorEcho $SUCCESS "******************** Congrats! ********************"
-# 	cat<<EOF
-# Done installation! Now, I am going to reboot your computer.
 
-	# <cropped>
-	
-# EOF
-# 	colorEcho $SUCCESS "**************************************************"
-# 	pause
 	sudo reboot
 }
 
@@ -429,5 +415,5 @@ sudo_nopass
 dist_upgrade
 more_pkgs
 dotfile
-sawfish_ugliness
+# sawfish_ugliness
 congrats
